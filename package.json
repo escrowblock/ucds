@@ -1,0 +1,52 @@
+{
+  "name": "ucds",
+  "version": "1.0.1",
+  "description": "United Cryptocurrency Depositing System (UCDS). Allows track transactions on various blockchain networks with an easy event scheme.",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint . --ext .js --fix",
+    "test": "mocha --require @babel/register --require test/helper.js test/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/escrowblock/ucds.git"
+  },
+  "keywords": [
+    "ethereum",
+    "eth",
+    "bitcoin",
+    "btc",
+    "deposit",
+    "blockchain",
+    "payments",
+    "cryptocurrencies",
+    "crypto"
+  ],
+  "author": "ESCB dev team and contributors <dev@escrowblock.net>",
+  "license": "GPL-3.0-or-later",
+  "pre-commit": "lint",
+  "bugs": {
+    "url": "https://github.com/escrowblock/ucds/issues"
+  },
+  "homepage": "https://github.com/escrowblock/ucds#readme",
+  "devDependencies": {
+    "@babel/preset-env": "^7.8.3",
+    "@babel/register": "^7.8.3",
+    "babel-eslint": "^10.0.2",
+    "eslint": "^6.2.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-mocha": "^6.0.0",
+    "mocha": "^5.2.0",
+    "pre-commit": "^1.2.2"
+  },
+  "dependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/runtime": "^7.7.7",
+    "babel-polyfill": "^6.26.0",
+    "babel-runtime": "^6.26.0",
+    "bitcoinjs-lib": "^5.1.7",
+    "dotenv": "^8.2.0",
+    "loglevel": "^1.5.0"
+  }
+}

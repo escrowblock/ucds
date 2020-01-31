@@ -1,0 +1,23 @@
+version: '3'
+services:
+  btc:
+    restart: always
+    build: ./lib/blockchains/BTC
+    ports:
+      - 127.0.0.1:8332:8332
+    volumes:
+      - /opt/ucds/btc:/root/.bitcoin
+    environment:
+     - BTC_RPCUSER=${BTC_RPCUSER}
+     - BTC_RPCPASSWORD=${BTC_RPCPASSWORD}
+     - BTC_TXINDEX=1
+     - BTC_TESTNET=${BTC_TESTNET}
+     - BTC_PRUNE=${BTC_PRUNE}
+  eth:
+    restart: always
+    image: parity/parity:latest
+    volumes:
+      - /opt/ucds/eth:/home/parity/.local/share/io.parity.ethereum
+    ports:
+      - 127.0.0.1:8545:8545
+    command: "--config /home/parity/.local/share/io.parity.ethereum/config.toml --base-path /home/parity/.local/share/io.parity.ethereum/"
