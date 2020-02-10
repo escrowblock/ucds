@@ -230,14 +230,17 @@ setup(Symbol, {...params})
 Symbol - coin or token symbol
 {...params} - object of parameters for connection to node by RPC
 
-Allows to setup parameters for blockchain node connection
+@return undefined
 
+Allows to setup parameters for blockchain node connection
 
 ```
 testRPC(Symbol)
 ```
 
 Symbol - coin or token symbol
+
+@return Boolean
 
 Allows to chekc that blockchain node is running. This method returns *Promise*;
 
@@ -246,6 +249,8 @@ subscribe(Symbol, {...params});
 ```
 Symbol - coin or token symbol
 {...params} - object of parameters for subscription
+
+@return EventEmitter object
 
 {
     "depositAddress": "required"
@@ -265,14 +270,29 @@ Symbol - coin or token symbol
 {
     "depositAddress": "optional"
 }
-  
+
+#return Boolean
+
 If {...params} will be omitted, when will be closed all subscriptions by Symbol
 
+```
+callRpc(Symbol, ProcedureName, ProcedureArgs)
+```
+Symbol - coin or token symbol
+
+ProcedureName - Remote procedure name
+ProcedureArgs - array of parameters for procedure
+
+@return void
+
+This function allow to invoke some RPC on certain blockchain
 
 ```
 close(Symbol);
 ```
 Symbol - coin or token symbol
+
+@return undefined
 
 Close connection for observation for new transactions
 

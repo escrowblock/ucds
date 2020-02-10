@@ -8,3 +8,7 @@ pruning = "fast"
 [snapshots]
 # Disables automatic periodic snapshots.
 disable_periodic = true
+
+[rpc]
+#  JSON-RPC will be listening for connections on IP localhost.
+interface = "all"

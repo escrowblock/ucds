@@ -13,7 +13,7 @@ class UCSD {
     if (typeof(this.blockchainList[name]) == undefined) {
       throw Error('This blockchain network is not supported right now. Please feel free to make a pull request to official repository.');
     }
-    for(const method in ["setup", "testRPC", "subscribe", "unsubscribe", "close"]) {
+    for(const method in ["setup", "testRPC", "callRpc", "subscribe", "unsubscribe", "close"]) {
       if (typeof(this.blockchainList[name][method]) == undefined) {
        throw Error('This blockchain network doesn`t have "' + method + '" method implementation.');
       }
@@ -29,6 +29,11 @@ class UCSD {
   testRPC (name) {
     this.validateBlockchain(name);
     return this.blockchainList[name].testRPC();
+  }
+  
+  callRpc (name, procedureName, procedureArgs = []) {
+    this.validateBlockchain(name);
+    return this.blockchainList[name].callRpc(procedureName, procedureArgs);
   }
   
   subscribe (name, parameters) {

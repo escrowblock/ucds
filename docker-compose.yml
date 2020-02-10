@@ -13,6 +13,10 @@ services:
      - BTC_TXINDEX=1
      - BTC_TESTNET=${BTC_TESTNET}
      - BTC_PRUNE=${BTC_PRUNE}
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
   eth:
     restart: always
     image: parity/parity:latest
@@ -21,3 +25,7 @@ services:
     ports:
       - 127.0.0.1:8545:8545
     command: "--config /home/parity/.local/share/io.parity.ethereum/config.toml --base-path /home/parity/.local/share/io.parity.ethereum/"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
