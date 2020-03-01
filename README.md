@@ -1,4 +1,6 @@
-[logo](./images/escrow_1024.png)
+<div align="center">
+  <img title="Escrowblock exchange logo" src="images/favicon.png">
+</div>
 
 <div align="center">United Cryptocurrency Depositing System (UCDS)</div>
 
