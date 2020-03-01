@@ -1,12 +1,37 @@
 # This config should be placed in following path:
 #   ~/.local/share/io.parity.ethereum/config.toml
 
+[ui]
+disable = true
+
+[network]
+# Parity will try to maintain connection to at least 50 peers.
+min_peers = 50
+# Parity will maintain at most 100 peers.
+max_peers = 100
+# Parity will maintain additional 10 peers for snapshot sync.
+snapshot_peers = 10
+
+[websockets]
+disable = true
+origins = ["none"]
+
 [footprint]
-# Prune old state data. Maintains journal overlay - fast but extra 50MB of memory used.
+# Prune old state data.
+tracing = "off"
 pruning = "fast"
+pruning_history = 8
+pruning_memory = 100
+cache_size_db = 64
+cache_size_blocks = 8
+cache_size_queue = 50
+cache_size_state = 25
+fast_and_loose = false
+db_compaction = "ssd"
+fat_db = "off"
+scale_verifiers = false
 
 [snapshots]
-# Disables automatic periodic snapshots.
 disable_periodic = true
 
 [rpc]

@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint . --ext .js --fix",
-    "test": "mocha --require @babel/register --require test/helper.js test/index.js"
+    "test": "mocha --require @babel/register --require test/helper.js test/index.js",
+    "example": "npx -p @babel/core -p @babel/node babel-node --presets @babel/preset-env ./examples/run.js"
   },
   "repository": {
     "type": "git",

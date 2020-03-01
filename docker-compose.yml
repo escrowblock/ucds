@@ -6,7 +6,7 @@ services:
     ports:
       - 127.0.0.1:8332:8332
     volumes:
-      - /opt/ucds/btc:/root/.bitcoin
+      - /mnt/volume/ucds/btc:/root/.bitcoin
     environment:
      - BTC_RPCUSER=${BTC_RPCUSER}
      - BTC_RPCPASSWORD=${BTC_RPCPASSWORD}
@@ -21,11 +21,25 @@ services:
     restart: always
     image: parity/parity:latest
     volumes:
-      - /opt/ucds/eth:/home/parity/.local/share/io.parity.ethereum
+      - /mnt/volume/ucds/eth:/home/parity/.local/share/io.parity.ethereum
     ports:
       - 127.0.0.1:8545:8545
-    command: "--config /home/parity/.local/share/io.parity.ethereum/config.toml --base-path /home/parity/.local/share/io.parity.ethereum/"
+      - 127.0.0.1:30303:30303
+    command: "--config /home/parity/.local/share/io.parity.ethereum/config.insecure.toml --base-path /home/parity/.local/share/io.parity.ethereum/"
     logging:
       driver: "json-file"
       options:
         max-size: "1m"
+  # eth:
+  #   restart: always
+  #   image: ethereum/client-go:stable
+  #   volumes:
+  #     - /mnt/volume/ucds/eth:/root/.ethereum
+  #   ports:
+  #     - 127.0.0.1:8545:8545
+  #     - 127.0.0.1:30303:30303
+  #   command: "--syncmode fast --nousb --rpc --rpcaddr \"0.0.0.0\""
+  #   logging:
+  #     driver: "json-file"
+  #     options:
+  #       max-size: "1m"

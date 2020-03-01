@@ -4,9 +4,9 @@
 
 # Description
 
-United Cryptocurrency Depositing System allows to have gateway for accepting cryptocurrencies on your addresses and watching transactions.
-UCDS works by event model, that allows to use it as microservice for transforming data from blockchain to offline data.
-For example you can handle the event that you have got a transaction in 0.01 BTC and record this to DB or send email, etc.
+United Cryptocurrency Depositing System allows having a gateway for accepting cryptocurrencies on your addresses and watching transactions.
+UCDS works by event model, which allows using it as microservice for transforming data from the blockchain to offline data.
+For example, you can handle the event that you have got a transaction in 0.01 BTC and record this to DB or send an email, etc.
 
 # Installation
 
@@ -317,20 +317,91 @@ callback - function that will be triggered after "confirmed" event (when transac
 `from, amount, rawTx`
 This event will be triggered in according with `confirmationCount` parameter in `subscribe` method
 
+# Testing
+
+Test via mocha
+
+```
+npm run test
+```
+
+To test specific coin with own address use the command `npm run example`.
+For example, for BTC:
+
+```
+npm run example BTC 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa
+```
+
+Where `BTC` - blockchain name. `1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa` - blockchain address.
+
+# Developing
+
+For adding a new blockchain you need to follow the next scheme of code organization.
+For example you want to add the blockchain with codename "XCHAIN". Then you need to create the next directories and files:
+
+`/ucds/examples/XCHAIN.js` - example that can be run by command `npm run example XCHAIN`
+
+`/ucds/lib/blockchains/XCHAIN/` - directory for files related to this blockchain
+
+`/ucds/lib/blockchains/XCHAIN/Dockerfile` - optional file for Docker image
+
+`/ucds/lib/blockchains/XCHAIN/docker_entrypoint.sh` - optional file for `Dockerfile`
+
+`/ucds/lib/blockchains/XCHAIN/README.md` - optional file for the settings description for this blockchain
+
+`/ucds/lib/blockchains/XCHAIN/XCHAIN.js` - code for the blockchain that implement interface between RPC and specification. For example look at the implementation for `BTC` in the file `/ucds/lib/blockchains/BTC/BTC.js`
+
+`/ucds/test/blockchains/XCHAIN.js` - file for the testing your code
+
+Add needed configuration to `docker-compose.yml`
+
+# Contributing
+
+You can read about the contributing process in the document [CONTRIBUTING.md](./CONTRIBUTING.md)
+
 # Code reusing and inspiration
 
-Thank for:
-https://github.com/bitpay/bitcoind-rpc
-https://github.com/renproject/send-crypto
+Thanks for:
+
+- https://github.com/bitpay/bitcoind-rpc
+- https://github.com/renproject/send-crypto
 
 # Blockchain node list
 
 - BTC: https://github.com/jamesob/docker-bitcoind
+- BSV: https://hub.docker.com/r/bitcoinsv/bitcoin-sv
+- BCH: https://github.com/bfgasparin/docker-bitcoin-abc
 - ETH: https://github.com/paritytech/parity-ethereum/tree/6b17e321dfbcd3db7b60f52ab8530a9dd77a4e46/scripts/docker
-- XMR: https://github.com/WietseWind/docker-rippled
+- XRP: https://github.com/WietseWind/docker-rippled
+- WAVES: https://github.com/wavesplatform/node-docker-image
+- XTZ: https://hub.docker.com/r/tezos/tezos/
+- EOS: https://hub.docker.com/r/eostudio/eos
+- ADA: https://github.com/cipherzzz/cardano-node
+- LTC: https://github.com/uphold/docker-litecoin-core
+- XLM: https://github.com/stellar/docker-stellar-core
+- XMR: https://hub.docker.com/r/xmrto/monero/
+- TRX: https://github.com/TRON-US/docker-tron-quickstart
+- DASH: https://github.com/dashpay/docker-dashd
+- NEO: https://github.com/CityOfZion/neo-privatenet-docker
+- ZEC: https://github.com/kost/docker-zcash
+- NEM: https://github.com/rb2nem/nem-docker
 
 # Blockchain RPC API node list
 
 - BTC: https://chainquery.com/bitcoin-cli/getrawmempool
+- BSV: https://chainquery.com/bitcoin-cli/getrawmempool
+- BCH: https://chainquery.com/bitcoin-cli/getrawmempool
 - ETH: https://github.com/ethereum/wiki/wiki/json-rpc
-- XMR: https://xrpl.org/account_tx.html
+- XRP: https://xrpl.org/account_tx.html
+- WAVES: https://nodes.wavesnodes.com/api-docs/index.html
+- XTZ: https://tezos.gitlab.io/developer/rpc.html
+- EOS: https://developers.eos.io/manuals/eos/latest/nodeos/plugins/chain_api_plugin/api-reference/index
+- ADA: https://cardanodocs.com/technical/wallet/api/v1/?v=1.7.0#section/Common-Use-Cases/Retrieving-Transaction-History
+- LTC: https://github.com/litecoin-project/litecoin/blob/master/doc/REST-interface.md
+- XLM: https://www.stellar.org/developers/horizon/reference/endpoints/transactions-for-account.html
+- XMR: https://web.getmonero.org/resources/developer-guides/wallet-rpc.html
+- TRX: https://developers.tron.network/docs/tron-wallet-rpc-api
+- DASH: https://docs.dash.org/en/stable/wallets/dashcore/cmd-rpc.html
+- NEO: https://docs.neo.org/docs/en-us/reference/rpc/latest-version/api.html
+- ZEC: https://zcash-rpc.github.io/
+- NEM: https://nemproject.github.io/

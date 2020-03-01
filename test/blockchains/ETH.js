@@ -78,7 +78,7 @@ describe('UCDS ETH', () => {
     
     it('should confirm that mepool is not empty and blockchain is full synced.', async () => {
       const blockNumber = await _testUCDSHandler.callRpc("ETH", "eth_blockNumber");
-      assert.equal(blockNumber !== '', true, 'ETH is runnig');
+      assert.equal(blockNumber && blockNumber.result !== '', true, 'ETH is runnig');
     });
   });
   
